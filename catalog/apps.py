@@ -1,6 +1,9 @@
 from django.apps import AppConfig
 from requests import post
 from productsMS import constants
+from rq import Queue
+from productsMS.worker import conn
+from api.v1.products.views import offer_updater
 
 ACCESS_TOKEN_OFFERS_API = ''
 
@@ -21,5 +24,7 @@ class CatalogConfig(AppConfig):
                 ACCESS_TOKEN_OFFERS_API = r.json()['access_token']
                 OFFER_API_HEADER = {'Bearer': ACCESS_TOKEN_OFFERS_API}
                 print("Access_token gained.")
+
         except Exception:
             print(Exception)
+
