@@ -1,1 +1,2 @@
-web: gunicorn productsMS.wsgi:application --log-file
+heroku ps:scale web=1
+web: gunicorn productsMS.wsgi:catalog
