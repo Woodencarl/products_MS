@@ -1,7 +1,6 @@
 import os
 import redis
 from rq import Worker, Queue, Connection
-from api.v1.products.views import offer_updater
 
 listen = ['high', 'default', 'low']
 
