@@ -1,4 +1,3 @@
-heroku ps:scale web=1
-web: gunicorn productsMS.wsgi --log-file
+web: gunicorn productsMS.wsgi:application
 clock: python clock.py
 worker: python worker.py
