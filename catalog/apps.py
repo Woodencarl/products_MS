@@ -6,7 +6,7 @@ import os
 class CatalogConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'catalog'
-    os.environ['API_OFFERS_URL'] = "https://applifting-python-excercise-ms.herokuapp.com/api/v1"
+    # os.environ['API_OFFERS_URL'] = "https://applifting-python-excercise-ms.herokuapp.com/api/v1"
 
     def ready(self):
         print('Getting access token for offers API...')

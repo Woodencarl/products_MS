@@ -63,7 +63,7 @@ class ProductsAPI(ListCreateAPIView):
 class ProductsRetrieveAPI(ListAPIView):
     def get(self, request, *args, **kwargs):
         thread_starter()
-        return Response({"status": True, "product": Products.objects.all().values()}, status=status.HTTP_200_OK)
+        return Response({"status": True, "products": Products.objects.all().values()}, status=status.HTTP_200_OK)
 
 
 class ProductsRetrieveUpdateDestroyAPI(RetrieveUpdateDestroyAPIView):
