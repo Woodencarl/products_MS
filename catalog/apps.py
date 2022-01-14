@@ -11,7 +11,7 @@ class CatalogConfig(AppConfig):
     def ready(self):
         print('Getting access token for offers API...')
         try:
-            r = post(url=os.getenv('API_OFFERS_URL') + "/auth")
+            r = post(url=str(os.getenv('API_OFFERS_URL')) + "/auth")
             if r.status_code.__str__() != '201':
                 raise Exception("Problem connecting to Offers API.")
             else:
