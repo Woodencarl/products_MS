@@ -56,7 +56,7 @@ class APITestCase(TestCase):
 
         r5 = client.get('/api/v1/products/' + product_id + "/offers")
         self.assertEquals(r5.status_code, 200)
-        self.assertTrue('Offers' in r5.data)
+        self.assertTrue('offers' in r5.data)
 
         self.assertEquals(offer_updater(), 1)
 
