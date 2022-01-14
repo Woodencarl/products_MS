@@ -229,3 +229,6 @@ Delete specific product from database.
   * On Heroku Delete request does not return response sometimes but delete is successful
   * When updater updates offers in database, it locks database and when request comes, API returns error due to locked database. Proposition: implement job query for synchronyzing request with updater
   * Update request requires name, which is not necessary to perform update. Proposition: do not use default serializer and write own serializer.
+
+    
+![REST is](https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia.tenor.com%2Fimages%2Fa48bfeb9935100b3850124005294b6de%2Ftenor.gif&f=1&nofb=1)    
