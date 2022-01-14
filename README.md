@@ -231,4 +231,19 @@ Delete specific product from database.
   * Update request requires name, which is not necessary to perform update. Proposition: do not use default serializer and write own serializer.
 
     
-![REST is](https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia.tenor.com%2Fimages%2Fa48bfeb9935100b3850124005294b6de%2Ftenor.gif&f=1&nofb=1)    
+# Stats:
+  * Python knowledge before task: 0.2/10 (Bachelor work written in Django ~5 years ago)
+  * Python knowledge after task: 0.9/10
+  * Spent hours: ~ 40
+  * Project started over: 2
+  * Anger girlfriend counter: 5
+  * Cat supervising hours: 2
+  * Hours in desperation: 4
+  * Task postponed: 3
+  * Task postponed due to "enough time, I can do other things": 2
+  * Ego lost points: -50
+  * Wanted to quit task: 0
+  * Girlfriend wanted me to quit task: 2
+    
+    
+![job done](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)  ![REST is](https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia.tenor.com%2Fimages%2Fa48bfeb9935100b3850124005294b6de%2Ftenor.gif&f=1&nofb=1)    
