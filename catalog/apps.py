@@ -1,16 +1,17 @@
 from django.apps import AppConfig
 from requests import post
-from productsMS import constants
+import os
 
 
 class CatalogConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'catalog'
+    # os.environ['API_OFFERS_URL'] = "https://applifting-python-excercise-ms.herokuapp.com/api/v1"
 
     def ready(self):
         print('Getting access token for offers API...')
         try:
-            r = post(url=constants.API_OFFERS_URL + "/auth")
+            r = post(url=os.getenv('API_OFFERS_URL') + "/auth")
             if r.status_code.__str__() != '201':
                 raise Exception("Problem connecting to Offers API.")
             else:

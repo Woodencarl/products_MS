@@ -1,12 +1,12 @@
 import threading
 import time
+import os
 from rest_framework import status
 from rest_framework.generics import (ListCreateAPIView, RetrieveUpdateDestroyAPIView, ListAPIView)
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from requests import get, post
 from catalog.models import Products, Offers
-from productsMS import constants
 from . import serializer
 from catalog import apps
 from datetime import datetime
@@ -38,7 +38,7 @@ class ProductsAPI(ListCreateAPIView):
         self.perform_create(serializer)
         post_data = {'id': serializer.data["id"], 'name': serializer.data["name"],
                      'description': serializer.data["description"]}
-        r = post(url=constants.API_OFFERS_URL + "/products/register", headers=apps.OFFER_API_HEADER, data=post_data)
+        r = post(url=os.getenv('API_OFFERS_URL') + "/products/register", headers=apps.OFFER_API_HEADER, data=post_data)
         if r.status_code.__str__() != '201':
             Products.objects.get(id=serializer.data["id"]).delete()
             r.raise_for_status()
@@ -103,7 +103,7 @@ class ProductsOfferGetAPI(ListAPIView):
 
 def load_offers_data(product_id):
     post_data = {'id': product_id}
-    r = get(url=constants.API_OFFERS_URL + "/products/" + str(product_id) + "/offers", headers=apps.OFFER_API_HEADER,
+    r = get(url=os.getenv('API_OFFERS_URL') + "/products/" + str(product_id) + "/offers", headers=apps.OFFER_API_HEADER,
             data=post_data)
     if r.status_code != 200:
         return r
