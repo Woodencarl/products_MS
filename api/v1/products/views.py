@@ -14,11 +14,17 @@ from datetime import datetime
 
 def updater_job():
     while True:
-        offer_updater()
         time.sleep(60)
+        offer_updater()
 
 
-updater = threading.Thread(target=updater_job, daemon=True)
+updater = threading.Thread(group= None, target=updater_job, daemon=True, )
+
+
+def thread_starter():
+    if updater.is_alive():
+        return
+    updater.start()
 
 
 class ProductsAPI(ListCreateAPIView):
@@ -43,9 +49,7 @@ class ProductsAPI(ListCreateAPIView):
                 return Response({"status": False,
                                  "message:": "Problem loading offers",
                                  "offer_response": offers_response})
-
-            if not updater.is_alive(daemon=True):
-                updater.start()
+            thread_starter()
             headers = self.get_success_headers(serializer.data)
             return Response({"status": True,
                              "message": "Product added and offers loaded!",
@@ -59,13 +63,11 @@ class ProductsRetrieveUpdateDestroyAPI(RetrieveUpdateDestroyAPIView):
     serializer_class = serializer.ProductsSerializer
 
     def get_queryset(self):
-        if not updater.is_alive(daemon=True):
-            updater.start()
+        thread_starter()
         return Products.objects.filter(id=self.kwargs.get('pk', None))
 
     def update(self, request, *args, **kwargs):
-        if not updater.is_alive(daemon=True):
-            updater.start()
+        thread_starter()
         partial = kwargs.pop('partial', False)
         instance = self.get_object()
         serializer = self.get_serializer(instance, data=request.data, partial=partial)
@@ -82,8 +84,7 @@ class ProductsRetrieveUpdateDestroyAPI(RetrieveUpdateDestroyAPIView):
                          "data": serializer.data})
 
     def destroy(self, request, *args, **kwargs):
-        if not updater.is_alive(daemon=True):
-            updater.start()
+        thread_starter()
         instance = self.get_object()
         self.perform_destroy(instance)
         return Response({"status": True,
@@ -94,8 +95,7 @@ class ProductsOfferGetAPI(ListAPIView):
     serializer_class = serializer.ProductsSerializer
 
     def get(self, request, *args, **kwargs):
-        if not updater.is_alive(daemon=True):
-            updater.start()
+        thread_starter()
         return Response({"Product": Products.objects.filter(id=self.kwargs.get("pk")).values()[0],
                          "Offers": Offers.objects.filter(product=self.kwargs.get("pk")).values()}
                         )
