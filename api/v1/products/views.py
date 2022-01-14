@@ -44,7 +44,7 @@ class ProductsAPI(ListCreateAPIView):
                                  "message:": "Problem loading offers",
                                  "offer_response": offers_response})
 
-            if not updater.is_alive(deamon=True):
+            if not updater.is_alive(daemon=True):
                 updater.start()
             headers = self.get_success_headers(serializer.data)
             return Response({"status": True,
@@ -59,12 +59,12 @@ class ProductsRetrieveUpdateDestroyAPI(RetrieveUpdateDestroyAPIView):
     serializer_class = serializer.ProductsSerializer
 
     def get_queryset(self):
-        if not updater.is_alive(deamon=True):
+        if not updater.is_alive(daemon=True):
             updater.start()
         return Products.objects.filter(id=self.kwargs.get('pk', None))
 
     def update(self, request, *args, **kwargs):
-        if not updater.is_alive(deamon=True):
+        if not updater.is_alive(daemon=True):
             updater.start()
         partial = kwargs.pop('partial', False)
         instance = self.get_object()
@@ -82,7 +82,7 @@ class ProductsRetrieveUpdateDestroyAPI(RetrieveUpdateDestroyAPIView):
                          "data": serializer.data})
 
     def destroy(self, request, *args, **kwargs):
-        if not updater.is_alive(deamon=True):
+        if not updater.is_alive(daemon=True):
             updater.start()
         instance = self.get_object()
         self.perform_destroy(instance)
@@ -94,7 +94,7 @@ class ProductsOfferGetAPI(ListAPIView):
     serializer_class = serializer.ProductsSerializer
 
     def get(self, request, *args, **kwargs):
-        if not updater.is_alive(deamon=True):
+        if not updater.is_alive(daemon=True):
             updater.start()
         return Response({"Product": Products.objects.filter(id=self.kwargs.get("pk")).values()[0],
                          "Offers": Offers.objects.filter(product=self.kwargs.get("pk")).values()}
