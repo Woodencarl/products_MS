@@ -58,6 +58,10 @@ class APITestCase(TestCase):
         self.assertEquals(r5.status_code, 200)
         self.assertTrue('offers' in r5.data)
 
+        r6 = client.get('/api/v1/products/')
+        self.assertEquals(r6.status_code, 200)
+        self.assertEquals(r6.data['status'], True)
+
         self.assertEquals(offer_updater(), 1)
 
         r4 = client.delete('/api/v1/products/' + product_id)

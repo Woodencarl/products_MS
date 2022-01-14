@@ -60,6 +60,12 @@ class ProductsAPI(ListCreateAPIView):
                             status=status.HTTP_201_CREATED, headers=headers)
 
 
+class ProductsRetrieveAPI(ListAPIView):
+    def get(self, request, *args, **kwargs):
+        thread_starter()
+        return Response({"status": True, "product": Products.objects.all().values()}, status=status.HTTP_200_OK)
+
+
 class ProductsRetrieveUpdateDestroyAPI(RetrieveUpdateDestroyAPIView):
     serializer_class = serializer.ProductsSerializer
 
