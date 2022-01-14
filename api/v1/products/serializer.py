@@ -12,3 +12,10 @@ class OfferSerializer(serializers.ModelSerializer):
     class Meta:
         model = Offers
         fields = "__all__"
+
+
+class ProductOfferSerializer(serializers.Serializer):
+    product_name = serializers.CharField()
+    offers = serializers.CharField()
+
+

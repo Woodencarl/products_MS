@@ -2,8 +2,6 @@ from django.apps import AppConfig
 from requests import post
 from productsMS import constants
 
-ACCESS_TOKEN_OFFERS_API = ''
-
 
 class CatalogConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
@@ -24,4 +22,3 @@ class CatalogConfig(AppConfig):
 
         except Exception:
             print(Exception)
-

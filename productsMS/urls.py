@@ -14,8 +14,20 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path, include
+from django.views.generic import TemplateView
+from rest_framework.schemas import get_schema_view
 
 urlpatterns = [
     path('api/', include('api.urls')),
+    # path('openapi', get_schema_view(
+    #     title="productsMS",
+    #     description="API for all things … and some things more, especially products and their offers from Applifting",
+    #     version="1.0.0",
+    #     url="https://applifting-entry.herokuapp.com/"
+    # ), name='openapi-schema'),
+    # path('swagger-ui/', TemplateView.as_view(
+    #     template_name='swagger-ui.html',
+    #     extra_context={'openapi': 'openapi-schema'}
+    # ), name='swagger-ui'),
 
 ]

@@ -1,4 +1,3 @@
-import logging
 import threading
 import time
 from rest_framework import status
@@ -92,6 +91,7 @@ class ProductsRetrieveUpdateDestroyAPI(RetrieveUpdateDestroyAPIView):
 
 
 class ProductsOfferGetAPI(ListAPIView):
+    serializer_class = serializer.ProductOfferSerializer
 
     def get(self, request, *args, **kwargs):
         if not updater.is_alive():
@@ -120,5 +120,5 @@ def offer_updater():
     for product in Products.objects.all():
         load_offers_data(product.id)
         ret += 1
-    print(datetime.now(), " Offers updated, # of products: ", ret)
+    print(datetime.now(), " Offers updated, # of products:", ret)
     return ret
