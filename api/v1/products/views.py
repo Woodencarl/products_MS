@@ -18,7 +18,7 @@ def updater_job():
         offer_updater()
 
 
-updater = threading.Thread(group= None, target=updater_job, daemon=True, )
+updater = threading.Thread(target=updater_job, daemon=True, )
 
 
 def thread_starter():
